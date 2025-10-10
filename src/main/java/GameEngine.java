@@ -31,10 +31,23 @@ public class GameEngine {
         if (guess == target) {
             gameWon = true;
             return new GuessResult(true, "Correct! You guessed it in " + attempts + " attempts.", attempts);
-        } else if (guess < target) {
-            return new GuessResult(false, "Too low! Try a higher number.", attempts);
+        } 
+
+        if (attempts >= MAX_ATTEMPTS) {
+            gameOver = true;
+            return new GuessResult(false, "Game Over! You've used all " + MAX_ATTEMPTS + " $
+        }
+	
+	int remaining = MAX_ATTEMPTS - attempts;
+
+	if (guess < target) {
+            GuessResult result = new GuessResult(false, "Too low! Try a higher number.", attempts);
+    	    result.setRemainingAttempts(remaining);
+    	    return result;
         } else {
-            return new GuessResult(false, "Too high! Try a lower number.", attempts);
+            GuessResult result = new GuessResult(false, "Too high! Try a lower number.", attempts);
+            result.setRemainingAttempts(remaining);
+   	    return result;
         }
     }
 

@@ -37,7 +37,8 @@ public class GameEngine {
 
         if (attempts >= MAX_ATTEMPTS) {
             gameOver = true;
-            return new GuessResult(false, "Game Over! You've used all " + MAX_ATTEMPTS + " $
+            return new GuessResult(false, "Game Over! You've used all " + MAX_ATTEMPTS + 
+		" attempts. The correct number was " + target + "!", attempts);
         }
 	
 	int remaining = MAX_ATTEMPTS - attempts;
